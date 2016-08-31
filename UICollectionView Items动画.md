@@ -31,9 +31,50 @@ to figure out from scratch.
 一些其它的操作。
 
 ##THE ITEMS
+UICollectionView管理着多种类型的item，所有类型的item都可以做动画。
+
+Cells是UICollectionViewCell的子类，类似于table view的cells，它是显示collection view的内容的最主要的视图对象。
+每一个cell描述了一个单独的数据对象，并呈现给用户，例如：一张带有标题的照片。
+
+Cells可以被创建，重用，配置，并且提供给collection view用于显示，这部分内容由collection view的data source提供，
+我们需要实现下面的方法：
     - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+补充视图一般用来提供相应section的一些额外信息，实际上就是替换了table view的header和footer视图的概念。
+
+装饰视图用来为collection view做一些装饰用。例如，为某个section提供一张背景图片，或者在collection view的最后
+放置一个装饰用的图标。
+
+补充视图和装饰视图都必须继承自UICollectionReusableView
+
+collection view中所有的item都有一个唯一的indexPath值，这个值用来在collection view中，以及在相应的layout/delegate/
+data source中来唯一的确定这个item。但是不同类型的item之间的indexPath值并没有任何关联，甚至可能不同类型的item会有
+相同的indexPath值。详见这篇[文档](https://developer.apple.com/library/ios/documentation/uikit/reference/UICollectionViewLayoutAttributes_class/Reference/Reference.html)。
 >如何利用indexPath参数来确定一个特定的supplementary视图完全取决于你。一般，可以使用elementKind参数来确定
 是何种类型的supplementary视图，然后利用indexPath参数来区分不同的supplementary视图实例。
+
+##THE LAYOUT
+Collection view的布局对象是UICollectionViewLayout的子类的实例，它决定了每一个item的布局特性，决定了在特定的
+rectangle内哪个item是可见的，并且为每一个item提供一个UICollectionViewLayoutAttributes来确定它的位置，转换，大小
+或者其它一些常用属性。
+
+苹果提供了一个具体的子类－UICollectionViewFlowLayout，它根据一些属性设置（横向或者竖直滚动，item间距，section内边距等）
+，在collection view的内容区域内均匀的排列一些矩形的item（cell，补充视图，装饰视图）。
+
+布局的时候，可以在item插入，删除的时候定制一些动态的有意思的动画效果。
+
+#插入，删除Items
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
